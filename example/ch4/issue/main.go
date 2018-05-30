@@ -23,6 +23,7 @@ func main() {
 }
 
 // !-
+// Args: repo:golang/go is:open json decode
 /* Output
 0 issue:
 #23331  mspiegel proposal: encoding/json: export the offset method of th

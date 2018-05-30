@@ -12,6 +12,7 @@ import (
 func SearchIssues(terms []string) (*IssuesSearchResult, error) {
 	//!-
 	q := url.QueryEscape(strings.Join(terms, " "))
+	//q is :repo%3Agolang%2Fgo+is%3Aopen+json+decoder
 	resp, err := http.Get(IssuesURL + "?q=" + q)
 	if err != nil {
 		return nil, err
