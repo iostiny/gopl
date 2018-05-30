@@ -131,7 +131,7 @@ func main() {
 		if len(args) < 1 {
 			usageDie()
 		}
-		search(arg)
+		search(args)
 		os.Exit(0)
 	}
 
