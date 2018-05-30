@@ -45,7 +45,7 @@ func get(url string) (*http.Response, error) {
 	return resp, nil
 }
 
-// function method, get issue from owner & repo & number info.
+// GetIssue function method, get issue from owner & repo & number info.
 func GetIssue(owner string, repo string, number string) (*Issue, error) {
 	url := strings.Join([]string{APIURL, "repos", owner, repo, "issues", number}, "/")
 	resp, err := get(url)
@@ -62,7 +62,7 @@ func GetIssue(owner string, repo string, number string) (*Issue, error) {
 	return &issue, nil
 }
 
-// function method, get issues from owner & repo info
+// GetIssues function method, get issues from owner & repo info
 func GetIssues(owner, repo string) ([]Issue, error) {
 	url := strings.Join([]string{APIURL, "repos", owner, repo, "issues"}, "/")
 	resp, err := get(url)
