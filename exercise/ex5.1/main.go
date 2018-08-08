@@ -1,4 +1,3 @@
-// Findlinks prints the links in an HTML document read from standard input.
 package main
 
 import (
@@ -10,7 +9,6 @@ import (
 
 func main() {
 	doc, err := html.Parse(os.Stdin)
-	fmt.Printf("%#v", doc)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "findlinks1: %v\n", err)
 		os.Exit(1)
@@ -21,8 +19,6 @@ func main() {
 	}
 }
 
-//!+visit
-// visit appends to links each link found in n and returns the results.
 func visit(links []string, n *html.Node) []string {
 	if n.Type == html.ElementNode && n.Data == "a" {
 		for _, a := range n.Attr {
@@ -32,11 +28,12 @@ func visit(links []string, n *html.Node) []string {
 		}
 	}
 
-	for c := n.FirstChild; c != nil; c = c.NextSibling {
-		links = visit(links, c)
+	if n.FirstChild != nil {
+		links = visit(links, n.FirstChild)
+	}
+	if n.NextSibling != nil {
+		links = visit(links, n.NextSibling)
 	}
 
 	return links
 }
-
-//!-visit
